@@ -396,9 +396,7 @@ def make_app():
         (r"/api/bookings", BookingHandler),
         (r"/api/admin", AdminHandler),
         (r"/api/filters", ContinentsHandler),
-        (r"/api/deploy", DeployHandler),
         (r"/api/file-b64", Fileb64Handler),
-        (r"/api/upload", UploadHandler),
         (r"/static/(.*)", tornado.web.StaticFileHandler, {"path": public_dir}),
     ])
 
