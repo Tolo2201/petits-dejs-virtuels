@@ -1,11 +1,1248 @@
-<!DOCTTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  
-  IOswald:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,
-<svg><rect width="100" height="100" fill="#FF0000"/></svg>" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petits Déjs Virtuels – togeZer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beige:    #f7f5f2;
+      --vert:     #00664c;
+      --rouge:    #a80b2a;
+      --marine:   #1b1962;
+      --jaune:    #f5a623;
+      --dark:     #1f1f1f;
+      --gris:     #75756e;
+      --gris-cl:  #dedad3;
+      --blanc:    #ffffff;
+      --ombre:    0 2px 16px rgba(0,0,0,0.09);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--beige);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--blanc);
+      border-bottom: 2px solid var(--gris-cl);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--rouge); }
+    .header-event {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gris);
+      text-align: right;
+    }
+    .header-event strong {
+      display: block;
+      color: var(--marine);
+      font-size: 0.95rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--marine) 0%, #2a2780 60%, var(--rouge) 100%);
+      color: var(--blanc);
+      padding: 3rem 2rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'%3E%3Cellipse cx='400' cy='200' rx='350' ry='150' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='40'/%3E%3Cellipse cx='400' cy='200' rx='250' ry='100' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='30'/%3E%3C/svg%3E") center/cover;
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span { color: var(--jaune); }
+    .hero p {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 0.3rem;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: var(--jaune);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      margin-top: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      background: var(--blanc);
+      border-bottom: 1px solid var(--gris-cl);
+      padding: 1rem 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filters-bar label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gris);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .filters-bar select {
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 8px;
+      padding: 0.45rem 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--dark);
+      background: var(--beige);
+      cursor: pointer;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .filters-bar select:focus { border-color: var(--vert); }
+    .filters-bar .search-input {
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 8px;
+      padding: 0.45rem 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      color: var(--dark);
+      background: var(--beige);
+      outline: none;
+      flex: 1;
+      min-width: 180px;
+      transition: border-color .2s;
+    }
+    .search-input:focus { border-color: var(--vert); }
+    .reset-btn {
+      background: none;
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 8px;
+      padding: 0.45rem 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gris);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .reset-btn:hover { border-color: var(--rouge); color: var(--rouge); }
+    .count-badge {
+      margin-left: auto;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gris);
+    }
+    .count-badge span { color: var(--marine); font-weight: 800; }
+
+    /* ── GRID ── */
+    .main-content { padding: 2rem; }
+    .receptifs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--blanc);
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      box-shadow: var(--ombre);
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+      border-color: var(--vert);
+    }
+    .card-header {
+      padding: 1.1rem 1.2rem 0.7rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+    .card-emoji {
+      font-size: 2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .card-titles { flex: 1; min-width: 0; }
+    .card-nom {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--marine);
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+    .card-pays {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gris);
+      margin-top: 0.2rem;
+    }
+    .card-continent {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: 20px;
+      margin-top: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .cont-afrique    { background: #fef3cd; color: #b45309; }
+    .cont-asie       { background: #dbeafe; color: #1d4ed8; }
+    .cont-amerique   { background: #dcfce7; color: #15803d; }
+    .cont-europe     { background: #ede9fe; color: #6d28d9; }
+    .cont-moyen      { background: #ffe4e6; color: #9f1239; }
+
+    .card-contact {
+      padding: 0 1.2rem 0.6rem;
+      font-size: 0.8rem;
+      color: var(--gris);
+    }
+    .card-contact strong { color: var(--dark); }
+
+    .card-footer {
+      margin-top: auto;
+      padding: 0.7rem 1.2rem;
+      border-top: 1px solid var(--gris-cl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--beige);
+    }
+    .slots-info {
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .slots-dispo { color: var(--vert); }
+    .slots-plein { color: var(--rouge); }
+    .card-btn {
+      background: var(--vert);
+      color: var(--blanc);
+      border: none;
+      border-radius: 8px;
+      padding: 0.4rem 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .card-btn:hover { background: #004d38; }
+    .card-btn.complet { background: var(--gris-cl); color: var(--gris); cursor: default; }
+    .detail-descriptions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0 1.5rem 0;
+    }
+    .desc-block {
+      background: var(--blanc);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--gris-cl);
+      box-shadow: var(--ombre);
+    }
+    .desc-title {
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--vert);
+      margin-bottom: 0.6rem;
+    }
+    .desc-text {
+      font-size: 0.9rem;
+      color: var(--dark);
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    @media (max-width: 640px) {
+      .detail-descriptions { grid-template-columns: 1fr; }
+    }
+
+    /* ── VIEW DETAIL ── */
+    #view-detail, #view-admin { display: none; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--marine);
+      text-decoration: none;
+      background: var(--blanc);
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: all .2s;
+      margin-bottom: 1.5rem;
+    }
+    .back-btn:hover { border-color: var(--marine); background: var(--beige); }
+
+    .detail-header {
+      background: var(--blanc);
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      box-shadow: var(--ombre);
+    }
+    .detail-emoji { font-size: 3.5rem; }
+    .detail-info h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--marine);
+    }
+    .detail-info .detail-pays {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gris);
+      margin: 0.2rem 0;
+    }
+    .detail-info .detail-contact {
+      font-size: 0.88rem;
+      color: var(--dark);
+    }
+    .detail-date-badge {
+      margin-left: auto;
+      background: var(--marine);
+      color: var(--blanc);
+      border-radius: 10px;
+      padding: 0.7rem 1.2rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .detail-date-badge .day { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+    .detail-date-badge .month { font-size: 0.8rem; font-weight: 600; opacity: 0.8; }
+    .detail-date-badge .year { font-size: 0.75rem; opacity: 0.6; }
+
+    .slots-section h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--marine);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .slots-legend {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gris);
+    }
+    .legend-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .dot-dispo  { background: var(--vert); }
+    .dot-reserve { background: var(--rouge); }
+    .dot-bloque  { background: var(--gris-cl); }
+
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.7rem;
+    }
+    .slot-btn {
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 0.9rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .slot-time {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+    .slot-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .slot-disponible {
+      background: #f0fdf4;
+      border-color: var(--vert);
+      color: var(--vert);
+    }
+    .slot-disponible:hover {
+      background: var(--vert);
+      color: var(--blanc);
+      transform: scale(1.04);
+    }
+    .slot-reserve {
+      background: #fff1f3;
+      border-color: var(--rouge);
+      color: var(--rouge);
+      cursor: not-allowed;
+    }
+    .slot-bloque {
+      background: var(--beige);
+      border-color: var(--gris-cl);
+      color: var(--gris-cl);
+      cursor: not-allowed;
+    }
+
+    /* Admin slots */
+    .slot-admin-disponible {
+      background: #f0fdf4;
+      border-color: var(--vert);
+      color: var(--vert);
+      cursor: pointer;
+    }
+    .slot-admin-disponible:hover { background: #bbf7d0; }
+    .slot-admin-bloque {
+      background: #f5f5f5;
+      border-color: #ccc;
+      color: #999;
+      cursor: pointer;
+    }
+    .slot-admin-bloque:hover { background: #e5e5e5; }
+    .slot-admin-reserve {
+      background: #fff1f3;
+      border-color: var(--rouge);
+      color: var(--rouge);
+      cursor: default;
+    }
+    .slot-admin-sub {
+      font-size: 0.65rem;
+      margin-top: 0.3rem;
+      opacity: 0.8;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--blanc);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      animation: slideUp .25s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+    .modal-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      color: var(--marine);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .modal-subtitle {
+      font-size: 0.82rem;
+      color: var(--gris);
+      margin-bottom: 1.4rem;
+    }
+    .modal-subtitle strong { color: var(--vert); }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--gris);
+      margin-bottom: 0.35rem;
+    }
+    .form-group input {
+      width: 100%;
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 8px;
+      padding: 0.6rem 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      color: var(--dark);
+      background: var(--beige);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus { border-color: var(--vert); }
+    .modal-actions {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.4rem;
+    }
+    .btn-confirm {
+      flex: 1;
+      background: var(--vert);
+      color: var(--blanc);
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-confirm:hover { background: #004d38; }
+    .btn-confirm:disabled { background: var(--gris-cl); cursor: default; }
+    .btn-cancel {
+      background: none;
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 8px;
+      padding: 0.75rem 1.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gris);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-cancel:hover { border-color: var(--rouge); color: var(--rouge); }
+
+    /* ── SUCCESS ── */
+    .success-modal {
+      text-align: center;
+    }
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 0.8rem;
+    }
+    .success-modal h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      color: var(--vert);
+      margin-bottom: 0.5rem;
+    }
+    .success-modal p {
+      font-size: 0.88rem;
+      color: var(--gris);
+      margin-bottom: 0.3rem;
+    }
+    .success-detail {
+      background: var(--beige);
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: left;
+    }
+    .success-detail p {
+      font-size: 0.85rem;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+    .success-detail strong { color: var(--marine); }
+    .btn-close-success {
+      width: 100%;
+      background: var(--marine);
+      color: var(--blanc);
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    /* ── ADMIN VIEW ── */
+    .admin-banner {
+      background: linear-gradient(90deg, var(--marine), #2a2780);
+      color: var(--blanc);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .admin-banner .admin-icon { font-size: 1.8rem; }
+    .admin-banner h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .admin-banner p { font-size: 0.82rem; opacity: 0.8; }
+    .admin-stats {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      background: var(--blanc);
+      border: 1.5px solid var(--gris-cl);
+      border-radius: 10px;
+      padding: 0.8rem 1.2rem;
+      text-align: center;
+      min-width: 100px;
+    }
+    .stat-box .stat-n {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .stat-box .stat-l { font-size: 0.72rem; font-weight: 600; color: var(--gris); text-transform: uppercase; margin-top: 0.2rem; }
+    .stat-dispo  .stat-n { color: var(--vert); }
+    .stat-reserve .stat-n { color: var(--rouge); }
+    .stat-bloque  .stat-n { color: var(--gris); }
+
+    .admin-slot-btn {
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .resa-info {
+      font-size: 0.62rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+      line-height: 1.3;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--gris);
+    }
+    .empty-state .empty-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+    .empty-state p { font-size: 0.9rem; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--dark);
+      color: var(--blanc);
+      border-radius: 10px;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      z-index: 999;
+      transition: transform .3s ease;
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.error { background: var(--rouge); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.6rem; }
+      .detail-header { flex-direction: column; }
+      .detail-date-badge { margin-left: 0; }
+      header { padding: 0 1rem; }
+    }
+  </style>
 </head>
-<body>Hello world</body>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#" onclick="showHome()">toge<span>Z</span>er</a>
+  <div class="header-event">
+    <strong>Petits Déjs Virtuels</strong>
+    Mercredi 25 mars 2026
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════
+     VUE : ACCUEIL
+═══════════════════════════════════ -->
+<div id="view-home">
+  <div class="hero">
+    <h1>Petits Déjs <span>Virtuels</span></h1>
+    <p>Prenez rendez-vous avec nos réceptifs partenaires</p>
+    <p>Créneaux de 20 min · 9h00 – 13h00</p>
+    <span class="badge">📅 Mercredi 25 mars 2026</span>
+  </div>
+
+  <div class="filters-bar">
+    <label>Filtrer :</label>
+    <select id="filter-continent" onchange="applyFilters()">
+      <option value="">🌐 Tous les continents</option>
+    </select>
+    <select id="filter-pays" onchange="applyFilters()">
+      <option value="">📍 Tous les pays</option>
+    </select>
+    <input class="search-input" id="filter-search" type="text" placeholder="🔍 Rechercher un réceptif…" oninput="applyFilters()">
+    <button class="reset-btn" onclick="resetFilters()">✕ Réinitialiser</button>
+    <span class="count-badge"><span id="count-display">0</span> réceptif(s)</span>
+  </div>
+
+  <div class="main-content">
+    <div class="receptifs-grid" id="receptifs-grid">
+      <!-- Cards injected by JS -->
+    </div>
+    <div class="empty-state" id="empty-state" style="display:none">
+      <div class="empty-icon">🔍</div>
+      <p>Aucun réceptif ne correspond à vos filtres.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     VUE : DÉTAIL RÉCEPTIF
+═══════════════════════════════════ -->
+<div id="view-detail">
+  <div class="main-content">
+    <button class="back-btn" onclick="showHome()">← Retour aux réceptifs</button>
+    <div class="detail-header" id="detail-header"></div>
+    <div class="detail-descriptions" id="detail-descriptions" style="display:none">
+      <div class="desc-block">
+        <div class="desc-title">🏢 L'entreprise</div>
+        <div class="desc-text" id="desc-entreprise"></div>
+      </div>
+      <div class="desc-block">
+        <div class="desc-title">👤 L'expert</div>
+        <div class="desc-text" id="desc-expert"></div>
+      </div>
+    </div>
+    <div class="slots-section">
+      <h3>Créneaux disponibles</h3>
+      <div class="slots-legend">
+        <span class="legend-item"><span class="legend-dot dot-dispo"></span>Disponible</span>
+        <span class="legend-item"><span class="legend-dot dot-reserve"></span>Réservé</span>
+        <span class="legend-item"><span class="legend-dot dot-bloque"></span>Bloqué</span>
+      </div>
+      <div class="slots-grid" id="slots-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     VUE : ADMIN
+═══════════════════════════════════ -->
+<div id="view-admin">
+  <div class="main-content">
+    <button class="back-btn" onclick="showHome()">← Retour à l'accueil</button>
+    <div class="admin-banner">
+      <div class="admin-icon">🔐</div>
+      <div>
+        <h3 id="admin-title">Espace réceptif</h3>
+        <p>Gérez vos créneaux · Cliquez pour bloquer / débloquer</p>
+      </div>
+    </div>
+    <div class="detail-header" id="admin-detail-header"></div>
+    <div class="admin-stats" id="admin-stats"></div>
+    <div class="slots-section">
+      <h3>Gestion des créneaux</h3>
+      <div class="slots-legend">
+        <span class="legend-item"><span class="legend-dot dot-dispo"></span>Disponible (cliquer pour bloquer)</span>
+        <span class="legend-item"><span class="legend-dot dot-reserve"></span>Réservé</span>
+        <span class="legend-item"><span class="legend-dot dot-bloque"></span>Bloqué (cliquer pour débloquer)</span>
+      </div>
+      <div class="slots-grid" id="admin-slots-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     MODAL : RÉSERVATION
+═══════════════════════════════════ -->
+<div class="modal-overlay" id="modal-booking">
+  <div class="modal">
+    <div class="modal-title">Réserver ce créneau</div>
+    <div class="modal-subtitle" id="modal-slot-info">Avec <strong>–</strong> à <strong>–</strong></div>
+    <form id="booking-form" onsubmit="submitBooking(event)">
+      <div class="form-group">
+        <label>Nom de l'agence *</label>
+        <input type="text" id="input-agence" placeholder="Ex: Voyages Durand" required autocomplete="organization">
+      </div>
+      <div class="form-group">
+        <label>Votre nom *</label>
+        <input type="text" id="input-contact" placeholder="Prénom Nom" required autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" id="input-email" placeholder="vous@agence.com" required autocomplete="email">
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" onclick="closeModal()">Annuler</button>
+        <button type="submit" class="btn-confirm" id="btn-submit">Confirmer →</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL : SUCCÈS -->
+<div class="modal-overlay" id="modal-success">
+  <div class="modal success-modal">
+    <div class="success-icon">✅</div>
+    <h3>Rendez-vous confirmé !</h3>
+    <div class="success-detail" id="success-detail"></div>
+    <p style="font-size:0.78rem;color:var(--gris);margin-top:0.5rem">Pensez à noter ce rendez-vous dans votre agenda.</p>
+    <button class="btn-close-success" onclick="closeSuccess()">Fermer</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ──────────────────────────────────────────
+let allReceptifs = [];
+let currentReceptifId = null;
+let selectedSlotId = null;
+let adminToken = null;
+
+// ── INIT ───────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if admin URL
+  const params = new URLSearchParams(window.location.search);
+  adminToken = params.get('token');
+  if (adminToken) {
+    loadAdminView(adminToken);
+    return;
+  }
+  loadHome();
+});
+
+// ── HOME ───────────────────────────────────────────
+async function loadHome() {
+  try {
+    const [receptifsRes, filtersRes] = await Promise.all([
+      fetch('/api/receptifs'),
+      fetch('/api/filters')
+    ]);
+    allReceptifs = await receptifsRes.json();
+    const filters = await filtersRes.json();
+
+    // Populate continent filter
+    const contSelect = document.getElementById('filter-continent');
+    filters.continents.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      contSelect.appendChild(opt);
+    });
+    // Populate pays filter
+    const paysSelect = document.getElementById('filter-pays');
+    filters.pays.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p; opt.textContent = p;
+      paysSelect.appendChild(opt);
+    });
+
+    renderCards(allReceptifs);
+  } catch(e) {
+    console.error(e);
+    showToast('Erreur de connexion au serveur', true);
+  }
+}
+
+function renderCards(list) {
+  const grid = document.getElementById('receptifs-grid');
+  const empty = document.getElementById('empty-state');
+  document.getElementById('count-display').textContent = list.length;
+
+  if (list.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = list.map(r => {
+    const contClass = getContinentClass(r.continent);
+    const disponible = r.slots_disponibles > 0;
+    const slotLabel = disponible
+      ? `<span class="slots-info slots-dispo">🟢 ${r.slots_disponibles} créneau${r.slots_disponibles > 1 ? 'x' : ''} dispo</span>`
+      : `<span class="slots-info slots-plein">🔴 Complet</span>`;
+    return `
+      <div class="card" onclick="openReceptif(${r.id})">
+        <div class="card-header">
+          <div class="card-emoji">${r.emoji}</div>
+          <div class="card-titles">
+            <div class="card-nom">${r.nom}</div>
+            <div class="card-pays">${r.pays}</div>
+            <span class="card-continent ${contClass}">${r.continent}</span>
+          </div>
+        </div>
+        <div class="card-contact">Contact : <strong>${r.contact_nom}</strong></div>
+        <div class="card-footer">
+          ${slotLabel}
+          <button class="card-btn ${disponible ? '' : 'complet'}">${disponible ? 'Réserver →' : 'Complet'}</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function getContinentClass(c) {
+  if (!c) return '';
+  const m = { 'Afrique': 'cont-afrique', 'Asie / Océanie': 'cont-asie',
+               'Amérique': 'cont-amerique', 'Europe / Moyen Orient': 'cont-europe' };
+  return m[c] || '';
+}
+
+function applyFilters() {
+  const continent = document.getElementById('filter-continent').value;
+  const pays = document.getElementById('filter-pays').value;
+  const search = document.getElementById('filter-search').value.toLowerCase().trim();
+
+  const filtered = allReceptifs.filter(r => {
+    if (continent && r.continent !== continent) return false;
+    if (pays && !r.pays.includes(pays)) return false;
+    if (search && !r.nom.toLowerCase().includes(search) &&
+        !r.pays.toLowerCase().includes(search) &&
+        !r.contact_nom.toLowerCase().includes(search)) return false;
+    return true;
+  });
+  renderCards(filtered);
+}
+
+function resetFilters() {
+  document.getElementById('filter-continent').value = '';
+  document.getElementById('filter-pays').value = '';
+  document.getElementById('filter-search').value = '';
+  renderCards(allReceptifs);
+}
+
+// ── DETAIL VIEW ────────────────────────────────────
+async function openReceptif(id) {
+  currentReceptifId = id;
+  try {
+    const res = await fetch(`/api/receptifs/${id}/slots`);
+    const data = await res.json();
+    renderDetailHeader(data.receptif, data.event_date);
+    renderSlots(data.slots);
+    showView('detail');
+  } catch(e) {
+    showToast('Erreur de chargement', true);
+  }
+}
+
+function renderDetailHeader(r, date) {
+  const d = new Date(date + 'T00:00:00');
+  const day = d.getDate();
+  const month = d.toLocaleString('fr-FR', { month: 'long' });
+  const year = d.getFullYear();
+  const emoji = getEmoji(r.continent);
+
+  document.getElementById('detail-header').innerHTML = `
+    <div class="detail-emoji">${emoji}</div>
+    <div class="detail-info">
+      <h2>${r.nom}</h2>
+      <div class="detail-pays">📍 ${r.pays} · <span class="card-continent ${getContinentClass(r.continent)}" style="display:inline-block">${r.continent}</span></div>
+      <div class="detail-contact">👤 ${r.contact_nom}${r.telephone ? ' · ' + r.telephone : ''}</div>
+    </div>
+    <div class="detail-date-badge">
+      <div class="day">${day}</div>
+      <div class="month">${month}</div>
+      <div class="year">${year}</div>
+    </div>`;
+
+  // Show descriptions if available
+  const descSection = document.getElementById('detail-descriptions');
+  const descEntreprise = document.getElementById('desc-entreprise');
+  const descExpert = document.getElementById('desc-expert');
+  if (r.desc_entreprise || r.desc_expert) {
+    descSection.style.display = 'grid';
+    descEntreprise.textContent = r.desc_entreprise || '';
+    descExpert.textContent = r.desc_expert || '';
+  } else {
+    descSection.style.display = 'none';
+  }
+}
+
+function renderSlots(slots) {
+  const grid = document.getElementById('slots-grid');
+  grid.innerHTML = slots.map(s => {
+    if (s.statut === 'disponible') {
+      return `<button class="slot-btn slot-disponible" onclick="openBookingModal(${s.id}, '${s.heure}')">
+        <div class="slot-time">${s.heure}</div>
+        <div class="slot-label">Disponible</div>
+      </button>`;
+    } else if (s.statut === 'reserve') {
+      return `<div class="slot-btn slot-reserve">
+        <div class="slot-time">${s.heure}</div>
+        <div class="slot-label">Réservé</div>
+      </div>`;
+    } else {
+      return `<div class="slot-btn slot-bloque">
+        <div class="slot-time">${s.heure}</div>
+        <div class="slot-label">—</div>
+      </div>`;
+    }
+  }).join('');
+}
+
+function getEmoji(continent) {
+  const m = { 'Afrique': '🌍', 'Asie / Océanie': '🌏', 'Amérique': '🌎',
+               'Europe / Moyen Orient': '🌍' };
+  return m[continent] || '🌐';
+}
+
+// ── BOOKING MODAL ──────────────────────────────────
+function openBookingModal(slotId, heure) {
+  selectedSlotId = slotId;
+  const r = allReceptifs.find(x => x.id === currentReceptifId);
+  const name = r ? r.nom : '';
+  document.getElementById('modal-slot-info').innerHTML =
+    `Avec <strong>${name}</strong> à <strong>${heure}</strong> · mercredi 25 mars 2026`;
+  document.getElementById('booking-form').reset();
+  document.getElementById('btn-submit').disabled = false;
+  document.getElementById('modal-booking').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modal-booking').classList.remove('active');
+  selectedSlotId = null;
+}
+
+async function submitBooking(e) {
+  e.preventDefault();
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Confirmation…';
+
+  const body = {
+    slot_id: selectedSlotId,
+    agence_nom: document.getElementById('input-agence').value.trim(),
+    contact_nom: document.getElementById('input-contact').value.trim(),
+    email: document.getElementById('input-email').value.trim(),
+  };
+
+  try {
+    const res = await fetch('/api/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      closeModal();
+      showSuccessModal(data.details);
+      // Refresh slots
+      refreshSlots();
+      // Refresh cards
+      refreshCards();
+    } else {
+      showToast(data.error || 'Erreur lors de la réservation', true);
+      btn.disabled = false;
+      btn.textContent = 'Confirmer →';
+    }
+  } catch(e) {
+    showToast('Erreur de connexion', true);
+    btn.disabled = false;
+    btn.textContent = 'Confirmer →';
+  }
+}
+
+function showSuccessModal(details) {
+  document.getElementById('success-detail').innerHTML = `
+    <p>📅 <strong>Date :</strong> Mercredi 25 mars 2026 à ${details.heure}</p>
+    <p>🏢 <strong>Réceptif :</strong> ${details.receptif} – ${details.pays}</p>
+    <p>👤 <strong>Interlocuteur :</strong> ${details.interlocuteur}</p>`;
+  document.getElementById('modal-success').classList.add('active');
+}
+
+function closeSuccess() {
+  document.getElementById('modal-success').classList.remove('active');
+}
+
+async function refreshSlots() {
+  if (!currentReceptifId) return;
+  const res = await fetch(`/api/receptifs/${currentReceptifId}/slots`);
+  const data = await res.json();
+  renderSlots(data.slots);
+}
+
+async function refreshCards() {
+  const res = await fetch('/api/receptifs');
+  allReceptifs = await res.json();
+}
+
+// ── ADMIN VIEW ─────────────────────────────────────
+async function loadAdminView(token) {
+  try {
+    const res = await fetch(`/api/admin?token=${token}`);
+    if (!res.ok) {
+      document.body.innerHTML = `<div style="text-align:center;padding:4rem;font-family:Montserrat,sans-serif">
+        <div style="font-size:3rem">🔒</div>
+        <h2 style="color:#1b1962;font-family:Oswald,sans-serif;margin:1rem 0">Accès refusé</h2>
+        <p style="color:#75756e">Token invalide ou expiré.</p></div>`;
+      return;
+    }
+    const data = await res.json();
+    renderAdminView(data, token);
+    showView('admin');
+  } catch(e) {
+    showToast('Erreur de connexion', true);
+  }
+}
+
+function renderAdminView(data, token) {
+  const r = data.receptif;
+  document.getElementById('admin-title').textContent = `Espace réceptif – ${r.nom}`;
+
+  const emoji = getEmoji(r.continent);
+  document.getElementById('admin-detail-header').innerHTML = `
+    <div class="detail-emoji">${emoji}</div>
+    <div class="detail-info">
+      <h2>${r.nom}</h2>
+      <div class="detail-pays">📍 ${r.pays}</div>
+      <div class="detail-contact">👤 ${r.contact_nom}</div>
+    </div>`;
+
+  const dispo = data.slots.filter(s => s.statut === 'disponible').length;
+  const reserve = data.slots.filter(s => s.statut === 'reserve').length;
+  const bloque = data.slots.filter(s => s.statut === 'bloque').length;
+
+  document.getElementById('admin-stats').innerHTML = `
+    <div class="stat-box stat-dispo"><div class="stat-n">${dispo}</div><div class="stat-l">Disponibles</div></div>
+    <div class="stat-box stat-reserve"><div class="stat-n">${reserve}</div><div class="stat-l">Réservés</div></div>
+    <div class="stat-box stat-bloque"><div class="stat-n">${bloque}</div><div class="stat-l">Bloqués</div></div>`;
+
+  renderAdminSlots(data.slots, token);
+}
+
+function renderAdminSlots(slots, token) {
+  const grid = document.getElementById('admin-slots-grid');
+  grid.innerHTML = slots.map(s => {
+    if (s.statut === 'reserve') {
+      return `<div class="slot-btn slot-admin-reserve">
+        <div class="slot-time">${s.heure}</div>
+        <div class="slot-label">Réservé</div>
+        <div class="resa-info">${s.agence_nom || ''}<br>${s.resa_contact || ''}</div>
+      </div>`;
+    } else if (s.statut === 'disponible') {
+      return `<button class="slot-btn slot-admin-disponible" onclick="toggleAdminSlot(${s.id}, 'bloquer', '${token}')">
+        <div class="slot-time">${s.heure}</div>
+        <div class="slot-label">Disponible</div>
+        <div class="resa-info">Clic → bloquer</div>
+      </button>`;
+    } else {
+      return `<button class="slot-btn slot-admin-bloque" onclick="toggleAdminSlot(${s.id}, 'debloquer', '${token}')">
+        <div class="slot-time">${s.heure}</div>
+        <div class="slot-label">Bloqué</div>
+        <div class="resa-info">Clic → débloquer</div>
+      </button>`;
+    }
+  }).join('');
+}
+
+async function toggleAdminSlot(slotId, action, token) {
+  try {
+    const res = await fetch(`/api/admin?token=${token}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slot_id: slotId, action })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast(action === 'bloquer' ? '🔒 Créneau bloqué' : '🔓 Créneau débloqué');
+      await loadAdminView(token);
+    } else {
+      showToast(data.error || 'Erreur', true);
+    }
+  } catch(e) {
+    showToast('Erreur', true);
+  }
+}
+
+// ── NAVIGATION ─────────────────────────────────────
+function showHome() {
+  showView('home');
+  refreshCards();
+}
+
+function showView(name) {
+  document.getElementById('view-home').style.display = name === 'home' ? 'block' : 'none';
+  document.getElementById('view-detail').style.display = name === 'detail' ? 'block' : 'none';
+  document.getElementById('view-admin').style.display = name === 'admin' ? 'block' : 'none';
+  window.scrollTo(0, 0);
+}
+
+// Close modal on overlay click
+document.getElementById('modal-booking').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.getElementById('modal-success').addEventListener('click', function(e) {
+  if (e.target === this) closeSuccess();
+});
+
+// ── TOAST ───────────────────────────────────────────
+function showToast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  setTimeout(() => { t.className = 'toast'; }, 3000);
+}
+</script>
+</body>
 </html>
