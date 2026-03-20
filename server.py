@@ -353,6 +353,195 @@ class ContinentsHandler(BaseHandler):
         self.json_response({"continents": continents, "pays": pays})
 
 
+# ── Mots de passe réceptifs (6 chiffres) ──────────────────────────────────────
+RECEPTIF_PASSWORDS = {
+    "Atypique Lanka": "770487",
+    "Terra Australia": "216739",
+    "Archipel Contact": "126225",
+    "Mai Globe Travels": "877572",
+    "Shikoku Tours": "388389",
+    "Go Beyond": "356787",
+    "Odynovo": "334053",
+    "Travelart Maestros": "246316",
+    "Evasion Tropicale": "872246",
+    "Shanti Travel": "207473",
+    "Andalucia Aficion": "809570",
+    "Sóprasi": "876646",
+    "Alkemia": "671858",
+    "Dream Jordan": "191161",
+    "Azur Rp": "719176",
+    "Brightside Travel": "542417",
+    "Viasun": "133326",
+    "Echappée Nord": "131244",
+    "Terra Gaïa Balka": "198246",
+    "Oleaday": "329258",
+    "Xplore Oman": "343962",
+    "Pura Vida Cabo Verde": "629903",
+    "Sikiliza": "731262",
+    "Tanganyika Expeditions": "127824",
+    "Enclose Africa Safaris": "688508",
+    "Envie De Maghreb": "308496",
+    "Soaring Flamingo": "850800",
+    "Terra Gaïa Africa": "781453",
+    "Terra Gaïa Morocco": "835392",
+    "Serengeti Big Cats Safaris": "671412",
+    "Mahay Expédition": "539898",
+    "Terra Gaïa Ecuador": "331148",
+    "Holaqueya": "571029",
+    "Wakiy Tour": "717889",
+    "Terra Gaïa Brazil": "391704",
+    "Terra Gaïa Argentina": "948749",
+    "Terra Gaïa Bolivia": "106814",
+    "Xplore Mexique": "895667",
+    "Phima Voyages": "944962",
+    "Terra Gaïa Chile": "267414",
+    "Travel Excellence": "832052",
+}
+
+ADMIN_USER = "Togezer"
+ADMIN_PASS = "Martin"
+
+
+class GlobalAdminHandler(BaseHandler):
+    """Espace Admin global – voir et modifier tous les RDV"""
+
+    def _check_auth(self):
+        user = self.get_argument("user", "")
+        pwd = self.get_argument("pwd", "")
+        if user != ADMIN_USER or pwd != ADMIN_PASS:
+            self.error("Identifiants incorrects", 401)
+            return False
+        return True
+
+    def get(self):
+        if not self._check_auth():
+            return
+        conn = self.get_db()
+        c = conn.cursor()
+        c.execute("""
+            SELECT res.id as resa_id, res.agence_nom, res.contact_nom as resa_contact,
+                   res.email as resa_email, res.created_at,
+                   s.heure, s.id as slot_id,
+                   rec.id as receptif_id, rec.nom as receptif_nom,
+                   rec.pays, rec.continent, rec.contact_nom
+            FROM reservations res
+            JOIN slots s ON s.id = res.slot_id
+            JOIN receptifs rec ON rec.id = s.receptif_id
+            ORDER BY rec.continent, rec.nom, s.heure
+        """)
+        reservations = [dict(r) for r in c.fetchall()]
+        # Stats
+        c.execute("SELECT COUNT(*) FROM reservations")
+        total = c.fetchone()[0]
+        c.execute("SELECT COUNT(*) FROM receptifs")
+        nb_receptifs = c.fetchone()[0]
+        conn.close()
+        self.json_response({
+            "reservations": reservations,
+            "total": total,
+            "nb_receptifs": nb_receptifs,
+            "event_date": EVENT_DATE
+        })
+
+    def post(self):
+        """Modifier ou annuler un RDV"""
+        if not self._check_auth():
+            return
+        try:
+            data = json.loads(self.request.body)
+        except:
+            return self.error("JSON invalide")
+
+        action = data.get("action")
+        resa_id = data.get("resa_id")
+
+        if not resa_id:
+            return self.error("resa_id manquant")
+
+        conn = self.get_db()
+        c = conn.cursor()
+
+        if action == "annuler":
+            c.execute("SELECT slot_id FROM reservations WHERE id=?", (resa_id,))
+            row = c.fetchone()
+            if not row:
+                conn.close()
+                return self.error("Réservation introuvable", 404)
+            c.execute("UPDATE slots SET statut='disponible' WHERE id=?", (row['slot_id'],))
+            c.execute("DELETE FROM reservations WHERE id=?", (resa_id,))
+            conn.commit()
+            conn.close()
+            self.json_response({"success": True, "message": "Réservation annulée"})
+
+        elif action == "modifier":
+            agence_nom = data.get("agence_nom", "").strip()
+            contact_nom = data.get("contact_nom", "").strip()
+            email = data.get("email", "").strip()
+            if not all([agence_nom, contact_nom, email]):
+                conn.close()
+                return self.error("Champs manquants")
+            c.execute("""UPDATE reservations SET agence_nom=?, contact_nom=?, email=?
+                         WHERE id=?""", (agence_nom, contact_nom, email, resa_id))
+            conn.commit()
+            conn.close()
+            self.json_response({"success": True, "message": "Réservation modifiée"})
+        else:
+            conn.close()
+            self.error("Action inconnue")
+
+
+class ReceptifAuthHandler(BaseHandler):
+    """Connexion réceptif par nom + mot de passe"""
+
+    def post(self):
+        try:
+            data = json.loads(self.request.body)
+        except:
+            return self.error("JSON invalide")
+
+        nom = data.get("nom", "").strip()
+        password = data.get("password", "").strip()
+
+        expected = RECEPTIF_PASSWORDS.get(nom)
+        if not expected or password != expected:
+            return self.error("Identifiants incorrects", 401)
+
+        conn = self.get_db()
+        c = conn.cursor()
+        c.execute("SELECT * FROM receptifs WHERE nom=?", (nom,))
+        receptif = c.fetchone()
+        if not receptif:
+            conn.close()
+            return self.error("Réceptif introuvable", 404)
+
+        c.execute("""
+            SELECT s.*, r.agence_nom, r.contact_nom as resa_contact, r.email as resa_email
+            FROM slots s
+            LEFT JOIN reservations r ON s.id = r.slot_id
+            WHERE s.receptif_id = ?
+            ORDER BY s.heure
+        """, (receptif['id'],))
+        slots = [dict(s) for s in c.fetchall()]
+        conn.close()
+        self.json_response({
+            "receptif": dict(receptif),
+            "slots": slots,
+            "event_date": EVENT_DATE
+        })
+
+
+class PasswordsListHandler(BaseHandler):
+    """Liste des mots de passe (admin seulement)"""
+
+    def get(self):
+        user = self.get_argument("user", "")
+        pwd = self.get_argument("pwd", "")
+        if user != ADMIN_USER or pwd != ADMIN_PASS:
+            return self.error("Non autorisé", 401)
+        result = [{"nom": k, "password": v} for k, v in RECEPTIF_PASSWORDS.items()]
+        self.json_response({"passwords": result})
+
+
 
 
 class Fileb64Handler(tornado.web.RequestHandler):
@@ -397,6 +586,9 @@ def make_app():
         (r"/api/admin", AdminHandler),
         (r"/api/filters", ContinentsHandler),
         (r"/api/file-b64", Fileb64Handler),
+        (r"/api/global-admin", GlobalAdminHandler),
+        (r"/api/receptif-auth", ReceptifAuthHandler),
+        (r"/api/passwords-list", PasswordsListHandler),
         (r"/static/(.*)", tornado.web.StaticFileHandler, {"path": public_dir}),
     ])
 
