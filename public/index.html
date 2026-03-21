@@ -686,7 +686,7 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var brandEl = document.querySelector('.brand') || document.querySelector('[class*="brand"]') || document.querySelector('[class*="logo"]');
+      var brandEl = document.querySelector('.logo-wrap') || document.querySelector('[class*="logo"]');
       if (brandEl) {
         var img = document.createElement('img');
         img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDAgNDQiPgo8cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMTExIiByeD0iNCIvPgo8dGV4dCB4PSI4IiB5PSIzMCIgZm9udC1mYW1pbHk9IidIZWx2ZXRpY2EgTmV1ZScsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjMwMCIgZmlsbD0iI2NjYyIgbGV0dGVyLXNwYWNpbmc9IjAuNSI+dG9nZTwvdGV4dD4KPGRlZnM+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJ6ZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjZjNmRhIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjMwJSIgc3RvcC1jb2xvcj0iIzY2YmI2YSIvPgogICAgPHN0b3Agb2Zmc2V0PSI2MCUiIHN0b3AtY29sb3I9IiNmZmVlNTgiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2VmNTM1MCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHRleHQgeD0iNTYiIHk9IjMzIiBmb250LWZhbWlseT0iJ0hlbHZldGljYSBOZXVlJyxBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI3pnKSI+WmVyPC90ZXh0Pgo8L3N2Zz4=';
@@ -702,18 +702,7 @@
 <!-- ââââââââââââââ HEADER ââââââââââââââ -->
 <header>
   <div class="logo-wrap">
-    <!-- TogeZer SVG Logo -->
-    <svg class="logo-svg" viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="160" height="44" fill="none"/>
-      <!-- "toge" in black -->
-      <text x="4" y="32" font-family="Verdana,Geneva,sans-serif" font-size="22" font-weight="bold" fill="#111111">toge</text>
-      <!-- "Z" accent in blue -->
-      <text x="70" y="32" font-family="Verdana,Geneva,sans-serif" font-size="22" font-weight="bold" fill="#0d5c8f">Z</text>
-      <!-- "er" in black -->
-      <text x="88" y="32" font-family="Verdana,Geneva,sans-serif" font-size="22" font-weight="bold" fill="#111111">er</text>
-      <!-- decorative underline -->
-      <line x1="4" y1="37" x2="118" y2="37" stroke="#0d5c8f" stroke-width="2.5"/>
-    </svg>
+    
     <div class="header-title">Petits DÃ©js Virtuels<br><span style="font-weight:normal;font-size:0.7rem;">25 mars 2026</span></div>
   </div>
   <div class="header-btns">
@@ -972,8 +961,7 @@ async function loadHome() {
   try {
     const res = await fetch('/api/receptifs');
     const data = await res.json();
-      allReceptifs = data;
-    allReceptifs = data.receptifs || [];
+    allReceptifs = Array.isArray(data) ? data : (data.receptifs || []);
     filteredReceptifs = [...allReceptifs];
     renderCards();
   } catch(e) {
