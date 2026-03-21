@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Petits Déjs Virtuels – togeZer</title>
+  <title>Petits DÃ©js Virtuels â togeZer</title>
   <style>
     :root {
       --blanc:   #ffffff;
@@ -24,7 +24,7 @@
       font-size: 14px;
     }
 
-    /* ── HEADER ── */
+    /* ââ HEADER ââ */
     header {
       background: var(--blanc);
       border-bottom: 2px solid var(--accent);
@@ -75,7 +75,7 @@
       color: var(--blanc);
     }
 
-    /* ── BANNER ── */
+    /* ââ BANNER ââ */
     .banner {
       position: relative;
       width: 100%;
@@ -126,14 +126,14 @@
       text-transform: uppercase;
     }
 
-    /* ── MAIN WRAPPER ── */
+    /* ââ MAIN WRAPPER ââ */
     .main-wrap {
       max-width: 1300px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* ── FILTERS ── */
+    /* ââ FILTERS ââ */
     .filters-bar {
       padding: 1.2rem 0 1rem;
       display: flex;
@@ -179,7 +179,7 @@
       color: var(--gris);
     }
 
-    /* ── CARDS GRID ── */
+    /* ââ CARDS GRID ââ */
     #home-view { display: block; }
     .cards-grid {
       display: grid;
@@ -272,7 +272,7 @@
     .btn-rdv:hover { background: var(--accent2); }
     .btn-rdv:disabled { background: #b0b0b0; cursor: default; }
 
-    /* ── DETAIL VIEW ── */
+    /* ââ DETAIL VIEW ââ */
     #detail-view { display: none; }
     .back-btn {
       display: inline-flex;
@@ -354,7 +354,7 @@
     }
     .slot-btn.taken:hover { background: var(--blanc); color: var(--gris-cl); }
 
-    /* ── MODALS ── */
+    /* ââ MODALS ââ */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -470,7 +470,7 @@
       border-left: 3px solid #c0392b;
     }
 
-    /* ── SUCCESS MODAL ── */
+    /* ââ SUCCESS MODAL ââ */
     #success-modal .modal-box { text-align: center; }
     .success-icon {
       font-size: 3rem;
@@ -479,7 +479,7 @@
     #success-modal h2 { border: none; text-align: center; justify-content: center; }
     #success-modal p { font-size: 0.82rem; color: var(--gris); line-height: 1.6; margin-bottom: 1rem; }
 
-    /* ── ADMIN & RECEPTIF VIEWS ── */
+    /* ââ ADMIN & RECEPTIF VIEWS ââ */
     #admin-view, #receptif-view { display: none; }
     .admin-header {
       display: flex;
@@ -637,10 +637,10 @@
       margin-top: 4px;
     }
 
-    /* ── EDIT MODAL ── */
+    /* ââ EDIT MODAL ââ */
     #edit-modal .modal-box { max-width: 520px; }
 
-    /* ── LOADING ── */
+    /* ââ LOADING ââ */
     .loading {
       text-align: center;
       padding: 3rem;
@@ -659,7 +659,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── FOOTER ── */
+    /* ââ FOOTER ââ */
     footer {
       background: var(--noir);
       color: #aaa;
@@ -669,7 +669,7 @@
     }
     footer a { color: #ccc; }
 
-    /* ── RESPONSIVE ── */
+    /* ââ RESPONSIVE ââ */
     @media (max-width: 600px) {
       header { padding: 0 1rem; height: 56px; }
       .header-title { display: none; }
@@ -679,10 +679,27 @@
       .btn-header { padding: 7px 10px; font-size: 0.7rem; }
     }
   </style>
+
+  <style>
+    .brand-logo-img { height:38px; display:inline-block; vertical-align:middle; }
+    .navbar-brand, .brand, .site-brand { display:flex; align-items:center; gap:8px; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var brandEl = document.querySelector('.brand') || document.querySelector('[class*="brand"]') || document.querySelector('[class*="logo"]');
+      if (brandEl) {
+        var img = document.createElement('img');
+        img.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNDAgNDQiPgo8cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMTExIiByeD0iNCIvPgo8dGV4dCB4PSI4IiB5PSIzMCIgZm9udC1mYW1pbHk9IidIZWx2ZXRpY2EgTmV1ZScsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9IjMwMCIgZmlsbD0iI2NjYyIgbGV0dGVyLXNwYWNpbmc9IjAuNSI+dG9nZTwvdGV4dD4KPGRlZnM+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJ6ZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMjZjNmRhIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjMwJSIgc3RvcC1jb2xvcj0iIzY2YmI2YSIvPgogICAgPHN0b3Agb2Zmc2V0PSI2MCUiIHN0b3AtY29sb3I9IiNmZmVlNTgiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2VmNTM1MCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHRleHQgeD0iNTYiIHk9IjMzIiBmb250LWZhbWlseT0iJ0hlbHZldGljYSBOZXVlJyxBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI3pnKSI+WmVyPC90ZXh0Pgo8L3N2Zz4=';
+        img.alt = 'togeZer logo';
+        img.className = 'brand-logo-img';
+        brandEl.insertBefore(img, brandEl.firstChild);
+      }
+    });
+  </script>
 </head>
 <body>
 
-<!-- ══════════════ HEADER ══════════════ -->
+<!-- ââââââââââââââ HEADER ââââââââââââââ -->
 <header>
   <div class="logo-wrap">
     <!-- TogeZer SVG Logo -->
@@ -697,25 +714,25 @@
       <!-- decorative underline -->
       <line x1="4" y1="37" x2="118" y2="37" stroke="#0d5c8f" stroke-width="2.5"/>
     </svg>
-    <div class="header-title">Petits Déjs Virtuels<br><span style="font-weight:normal;font-size:0.7rem;">25 mars 2026</span></div>
+    <div class="header-title">Petits DÃ©js Virtuels<br><span style="font-weight:normal;font-size:0.7rem;">25 mars 2026</span></div>
   </div>
   <div class="header-btns">
-    <button class="btn-header" onclick="openAdminLogin()">🔑 Espace Admin</button>
-    <button class="btn-header" onclick="openReceptifLogin()">👤 Espace Réceptif</button>
+    <button class="btn-header" onclick="openAdminLogin()">ð Espace Admin</button>
+    <button class="btn-header" onclick="openReceptifLogin()">ð¤ Espace RÃ©ceptif</button>
   </div>
 </header>
 
-<!-- ══════════════ BANNER ══════════════ -->
+<!-- ââââââââââââââ BANNER ââââââââââââââ -->
 <div class="banner" id="main-banner">
-  <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1400&q=80&auto=format&fit=crop" alt="Paysage de voyage" onerror="this.style.display='none'">
+  <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80&auto=format&fit=crop" alt="Paysage de voyage" onerror="this.style.display='none'">
   <div class="banner-overlay">
     <div class="banner-badge">25 mars 2026</div>
-    <h1>Petits Déjeuners Virtuels</h1>
-    <p>Rencontrez nos 41 partenaires réceptifs — Prenez rendez-vous pour un échange de 20 minutes</p>
+    <h1>Petits DÃ©jeuners Virtuels</h1>
+    <p>Rencontrez nos 41 partenaires rÃ©ceptifs â Prenez rendez-vous pour un Ã©change de 20 minutes</p>
   </div>
 </div>
 
-<!-- ══════════════ MAIN CONTENT ══════════════ -->
+<!-- ââââââââââââââ MAIN CONTENT ââââââââââââââ -->
 <div class="main-wrap">
 
   <!-- HOME VIEW -->
@@ -729,12 +746,12 @@
         <option value="">Tous les pays</option>
       </select>
       <select id="filter-dispo" onchange="applyFilters()">
-        <option value="">Toutes disponibilités</option>
-        <option value="dispo">Créneaux disponibles</option>
+        <option value="">Toutes disponibilitÃ©s</option>
+        <option value="dispo">CrÃ©neaux disponibles</option>
         <option value="complet">Complet</option>
       </select>
       <input type="text" id="filter-search" placeholder="Rechercher..." oninput="applyFilters()" style="min-width:160px;">
-      <button class="btn-reset" onclick="resetFilters()">Réinitialiser</button>
+      <button class="btn-reset" onclick="resetFilters()">RÃ©initialiser</button>
       <span class="count-tag" id="count-tag"></span>
     </div>
     <div class="cards-grid" id="cards-grid">
@@ -744,10 +761,10 @@
 
   <!-- DETAIL VIEW -->
   <div id="detail-view">
-    <button class="back-btn" onclick="goHome()">← Retour à la liste</button>
+    <button class="back-btn" onclick="goHome()">â Retour Ã  la liste</button>
     <div class="detail-header" id="detail-header"></div>
     <div class="slots-section">
-      <h3>Créneaux disponibles — 25 mars 2026</h3>
+      <h3>CrÃ©neaux disponibles â 25 mars 2026</h3>
       <div class="slots-grid" id="slots-grid"></div>
     </div>
   </div>
@@ -757,19 +774,19 @@
     <div class="admin-header">
       <div>
         <h2>Espace Administrateur</h2>
-        <p>Connecté en tant que <strong>Togezer</strong> — Vue globale de tous les rendez-vous</p>
+        <p>ConnectÃ© en tant que <strong>Togezer</strong> â Vue globale de tous les rendez-vous</p>
       </div>
-      <button class="btn-logout" onclick="logoutAdmin()">Déconnexion</button>
+      <button class="btn-logout" onclick="logoutAdmin()">DÃ©connexion</button>
     </div>
     <div id="admin-stats" class="summary-stats"></div>
     <div class="tabs">
       <button class="tab-btn active" onclick="switchTab('tab-rdvs', this)">Tous les RDV</button>
-      <button class="tab-btn" onclick="switchTab('tab-passwords', this)">Codes d'accès réceptifs</button>
+      <button class="tab-btn" onclick="switchTab('tab-passwords', this)">Codes d'accÃ¨s rÃ©ceptifs</button>
     </div>
     <div id="tab-rdvs" class="tab-content active">
-      <div class="section-title">Rendez-vous confirmés</div>
+      <div class="section-title">Rendez-vous confirmÃ©s</div>
       <div class="search-bar">
-        <input type="text" id="admin-search" placeholder="Rechercher par réceptif, agence, contact..." oninput="filterAdminTable()">
+        <input type="text" id="admin-search" placeholder="Rechercher par rÃ©ceptif, agence, contact..." oninput="filterAdminTable()">
         <select id="admin-filter-continent" onchange="filterAdminTable()">
           <option value="">Tous les continents</option>
         </select>
@@ -777,10 +794,10 @@
       <div id="admin-table-wrap"><div class="loading"><div class="spinner"></div><br>Chargement...</div></div>
     </div>
     <div id="tab-passwords" class="tab-content">
-      <div class="section-title">Codes d'accès — Espace Réceptif</div>
-      <p style="font-size:0.75rem;color:var(--gris);margin-bottom:1rem;">Ces codes permettent à chaque réceptif d'accéder à son espace personnel via le bouton "Espace Réceptif".</p>
+      <div class="section-title">Codes d'accÃ¨s â Espace RÃ©ceptif</div>
+      <p style="font-size:0.75rem;color:var(--gris);margin-bottom:1rem;">Ces codes permettent Ã  chaque rÃ©ceptif d'accÃ©der Ã  son espace personnel via le bouton "Espace RÃ©ceptif".</p>
       <div class="search-bar">
-        <input type="text" id="pwd-search" placeholder="Rechercher un réceptif..." oninput="filterPwdTable()">
+        <input type="text" id="pwd-search" placeholder="Rechercher un rÃ©ceptif..." oninput="filterPwdTable()">
       </div>
       <div id="passwords-table-wrap"><div class="loading"><div class="spinner"></div><br>Chargement...</div></div>
     </div>
@@ -790,25 +807,25 @@
   <div id="receptif-view">
     <div class="admin-header">
       <div>
-        <h2 id="receptif-view-title">Espace Réceptif</h2>
-        <p id="receptif-view-sub">Vos rendez-vous confirmés</p>
+        <h2 id="receptif-view-title">Espace RÃ©ceptif</h2>
+        <p id="receptif-view-sub">Vos rendez-vous confirmÃ©s</p>
       </div>
-      <button class="btn-logout" onclick="logoutReceptif()">Déconnexion</button>
+      <button class="btn-logout" onclick="logoutReceptif()">DÃ©connexion</button>
     </div>
     <div id="receptif-content"><div class="loading"><div class="spinner"></div><br>Chargement...</div></div>
   </div>
 
 </div><!-- /main-wrap -->
 
-<!-- ══════════════ FOOTER ══════════════ -->
+<!-- ââââââââââââââ FOOTER ââââââââââââââ -->
 <footer>
-  <strong style="color:#fff;">togeZer</strong> — Petits Déjeuners Virtuels 2026 &nbsp;|&nbsp; <a href="mailto:contact@togezer.travel">contact@togezer.travel</a>
+  <strong style="color:#fff;">togeZer</strong> â Petits DÃ©jeuners Virtuels 2026 &nbsp;|&nbsp; <a href="mailto:contact@togezer.travel">contact@togezer.travel</a>
 </footer>
 
-<!-- ══════════════ MODAL : RÉSERVATION ══════════════ -->
+<!-- ââââââââââââââ MODAL : RÃSERVATION ââââââââââââââ -->
 <div class="modal-overlay" id="booking-modal">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('booking-modal')">×</button>
+    <button class="modal-close" onclick="closeModal('booking-modal')">Ã</button>
     <h2>Prendre rendez-vous</h2>
     <div class="slot-info-box" id="booking-slot-info"></div>
     <div class="form-row">
@@ -818,7 +835,7 @@
       </div>
       <div class="form-group">
         <label>Votre nom *</label>
-        <input type="text" id="b-contact" placeholder="Prénom Nom">
+        <input type="text" id="b-contact" placeholder="PrÃ©nom Nom">
       </div>
     </div>
     <div class="form-group">
@@ -830,22 +847,22 @@
   </div>
 </div>
 
-<!-- ══════════════ MODAL : SUCCÈS ══════════════ -->
+<!-- ââââââââââââââ MODAL : SUCCÃS ââââââââââââââ -->
 <div class="modal-overlay" id="success-modal">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('success-modal')">×</button>
-    <div class="success-icon">✅</div>
-    <h2>Rendez-vous confirmé !</h2>
+    <button class="modal-close" onclick="closeModal('success-modal')">Ã</button>
+    <div class="success-icon">â</div>
+    <h2>Rendez-vous confirmÃ© !</h2>
     <p id="success-msg"></p>
     <button class="btn-primary" onclick="closeModal('success-modal')">Fermer</button>
   </div>
 </div>
 
-<!-- ══════════════ MODAL : LOGIN ADMIN ══════════════ -->
+<!-- ââââââââââââââ MODAL : LOGIN ADMIN ââââââââââââââ -->
 <div class="modal-overlay" id="admin-login-modal">
   <div class="modal-box" style="max-width:380px;">
-    <button class="modal-close" onclick="closeModal('admin-login-modal')">×</button>
-    <h2>🔑 Espace Administrateur</h2>
+    <button class="modal-close" onclick="closeModal('admin-login-modal')">Ã</button>
+    <h2>ð Espace Administrateur</h2>
     <div class="form-group">
       <label>Utilisateur</label>
       <input type="text" id="al-user" placeholder="Identifiant" value="">
@@ -859,29 +876,29 @@
   </div>
 </div>
 
-<!-- ══════════════ MODAL : LOGIN RÉCEPTIF ══════════════ -->
+<!-- ââââââââââââââ MODAL : LOGIN RÃCEPTIF ââââââââââââââ -->
 <div class="modal-overlay" id="receptif-login-modal">
   <div class="modal-box" style="max-width:380px;">
-    <button class="modal-close" onclick="closeModal('receptif-login-modal')">×</button>
-    <h2>👤 Espace Réceptif</h2>
+    <button class="modal-close" onclick="closeModal('receptif-login-modal')">Ã</button>
+    <h2>ð¤ Espace RÃ©ceptif</h2>
     <div class="form-group">
-      <label>Nom de votre réceptif</label>
+      <label>Nom de votre rÃ©ceptif</label>
       <input type="text" id="rl-nom" placeholder="Ex: Atypique Lanka" list="receptif-datalist">
       <datalist id="receptif-datalist"></datalist>
     </div>
     <div class="form-group">
-      <label>Code d'accès (6 chiffres)</label>
-      <input type="password" id="rl-pass" placeholder="••••••" maxlength="6" onkeydown="if(event.key==='Enter')doReceptifLogin()">
+      <label>Code d'accÃ¨s (6 chiffres)</label>
+      <input type="password" id="rl-pass" placeholder="â¢â¢â¢â¢â¢â¢" maxlength="6" onkeydown="if(event.key==='Enter')doReceptifLogin()">
     </div>
     <div id="receptif-login-error" class="error-msg" style="display:none;"></div>
     <button class="btn-primary" onclick="doReceptifLogin()">Se connecter</button>
   </div>
 </div>
 
-<!-- ══════════════ MODAL : ÉDITION RDV ══════════════ -->
+<!-- ââââââââââââââ MODAL : ÃDITION RDV ââââââââââââââ -->
 <div class="modal-overlay" id="edit-modal">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('edit-modal')">×</button>
+    <button class="modal-close" onclick="closeModal('edit-modal')">Ã</button>
     <h2>Modifier le rendez-vous</h2>
     <input type="hidden" id="edit-booking-id">
     <div class="form-row">
@@ -905,9 +922,9 @@
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    STATE
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 let allReceptifs = [];
 let filteredReceptifs = [];
 let slotData = {};
@@ -917,18 +934,18 @@ let adminBookings = [];
 let adminPasswords = [];
 let currentView = 'home';
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    INIT
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 document.addEventListener('DOMContentLoaded', async () => {
   await loadHome();
   await loadFilters();
   await prefillReceptifDatalist();
 });
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    VIEW SWITCHING
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 function showView(v) {
   document.getElementById('home-view').style.display   = v === 'home'    ? 'block' : 'none';
   document.getElementById('detail-view').style.display = v === 'detail'  ? 'block' : 'none';
@@ -948,13 +965,14 @@ function switchTab(tabId, btn) {
   document.getElementById(tabId).classList.add('active');
 }
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    HOME + FILTERS
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 async function loadHome() {
   try {
     const res = await fetch('/api/receptifs');
     const data = await res.json();
+      allReceptifs = data;
     allReceptifs = data.receptifs || [];
     filteredReceptifs = [...allReceptifs];
     renderCards();
@@ -1010,18 +1028,18 @@ function resetFilters() {
 
 function renderCards() {
   const grid = document.getElementById('cards-grid');
-  document.getElementById('count-tag').textContent = `${filteredReceptifs.length} réceptif${filteredReceptifs.length>1?'s':''}`;
+  document.getElementById('count-tag').textContent = `${filteredReceptifs.length} rÃ©ceptif${filteredReceptifs.length>1?'s':''}`;
   if(!filteredReceptifs.length) {
-    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gris);">Aucun réceptif trouvé.</p>';
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gris);">Aucun rÃ©ceptif trouvÃ©.</p>';
     return;
   }
   grid.innerHTML = filteredReceptifs.map(r => {
     const slots = slotData[r.id];
     const dispoCount = slots ? slots.filter(s => s.statut === 'disponible').length : null;
     const badgeHtml = dispoCount === null
-      ? `<span class="slots-badge">Voir les créneaux</span>`
+      ? `<span class="slots-badge">Voir les crÃ©neaux</span>`
       : dispoCount > 0
-        ? `<span class="slots-badge">${dispoCount} créneau${dispoCount>1?'x':''} libre${dispoCount>1?'s':''}</span>`
+        ? `<span class="slots-badge">${dispoCount} crÃ©neau${dispoCount>1?'x':''} libre${dispoCount>1?'s':''}</span>`
         : `<span class="slots-badge full">Complet</span>`;
     const btnDisabled = (dispoCount === 0) ? 'disabled' : '';
     return `
@@ -1032,7 +1050,7 @@ function renderCards() {
         <span class="card-continent">${r.continent}</span>
       </div>
       <div class="card-body">
-        <div class="card-contact"><strong>${r.contact_nom || 'Contact à définir'}</strong></div>
+        <div class="card-contact"><strong>${r.contact_nom || 'Contact Ã  dÃ©finir'}</strong></div>
         <div class="card-desc">${r.desc_entreprise || ''}</div>
       </div>
       <div class="card-footer">
@@ -1045,9 +1063,9 @@ function renderCards() {
   }).join('');
 }
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    DETAIL VIEW
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 async function openReceptif(id) {
   currentReceptifId = id;
   const r = allReceptifs.find(x => x.id === id);
@@ -1056,10 +1074,10 @@ async function openReceptif(id) {
   // Header
   document.getElementById('detail-header').innerHTML = `
     <h2>${r.nom}</h2>
-    <div class="detail-pays">📍 ${r.pays} &nbsp;·&nbsp; ${r.continent}</div>
+    <div class="detail-pays">ð ${r.pays} &nbsp;Â·&nbsp; ${r.continent}</div>
     <div class="detail-contact">
       <strong>${r.contact_nom}</strong>
-      ${r.email ? `&nbsp;·&nbsp; <a href="mailto:${r.email}" style="color:var(--accent);">${r.email}</a>` : ''}
+      ${r.email ? `&nbsp;Â·&nbsp; <a href="mailto:${r.email}" style="color:var(--accent);">${r.email}</a>` : ''}
     </div>
     ${r.desc_expert ? `<div class="detail-desc"><strong>Expert :</strong> ${r.desc_expert}</div>` : ''}
     ${r.desc_entreprise ? `<div class="detail-desc" style="margin-top:8px;">${r.desc_entreprise}</div>` : ''}
@@ -1073,28 +1091,28 @@ async function openReceptif(id) {
     const slots = data.slots || [];
     slotData[id] = slots;
     if(!slots.length) {
-      slotsGrid.innerHTML = '<p style="color:var(--gris);">Aucun créneau configuré.</p>';
+      slotsGrid.innerHTML = '<p style="color:var(--gris);">Aucun crÃ©neau configurÃ©.</p>';
       return;
     }
     slotsGrid.innerHTML = slots.map(s => {
       const isFree = s.statut === 'disponible';
       return `<button class="slot-btn${isFree?'':' taken'}"
         ${isFree ? `onclick="openBookingModal(${id},'${s.id}','${s.heure}','${r.nom}')"` : 'disabled'}
-        >${s.heure}${isFree?'':' — Pris'}</button>`;
+        >${s.heure}${isFree?'':' â Pris'}</button>`;
     }).join('');
   } catch(e) {
-    slotsGrid.innerHTML = '<p style="color:#c0392b;">Erreur de chargement des créneaux.</p>';
+    slotsGrid.innerHTML = '<p style="color:#c0392b;">Erreur de chargement des crÃ©neaux.</p>';
   }
 }
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    BOOKING MODAL
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 function openBookingModal(receptifId, slotId, heure, receptifNom) {
   currentReceptifId = receptifId;
   currentSlotId = slotId;
   document.getElementById('booking-slot-info').innerHTML =
-    `<strong>${receptifNom}</strong>Créneau : ${heure} — 25 mars 2026`;
+    `<strong>${receptifNom}</strong>CrÃ©neau : ${heure} â 25 mars 2026`;
   document.getElementById('b-agence').value = '';
   document.getElementById('b-contact').value = '';
   document.getElementById('b-email').value = '';
@@ -1129,23 +1147,23 @@ async function submitBooking() {
       closeModal('booking-modal');
       const r = allReceptifs.find(x => x.id === currentReceptifId);
       document.getElementById('success-msg').innerHTML =
-        `Votre rendez-vous avec <strong>${r ? r.nom : 'le réceptif'}</strong> est confirmé.<br>Un récapitulatif a été envoyé à <strong>${email}</strong>.`;
+        `Votre rendez-vous avec <strong>${r ? r.nom : 'le rÃ©ceptif'}</strong> est confirmÃ©.<br>Un rÃ©capitulatif a Ã©tÃ© envoyÃ© Ã  <strong>${email}</strong>.`;
       openModal('success-modal');
       // Refresh slots
       if(currentView === 'detail') openReceptif(currentReceptifId);
     } else {
-      errDiv.textContent = data.error || 'Erreur lors de la réservation.';
+      errDiv.textContent = data.error || 'Erreur lors de la rÃ©servation.';
       errDiv.style.display = 'block';
     }
   } catch(e) {
-    errDiv.textContent = 'Erreur réseau. Veuillez réessayer.';
+    errDiv.textContent = 'Erreur rÃ©seau. Veuillez rÃ©essayer.';
     errDiv.style.display = 'block';
   }
 }
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    ADMIN LOGIN + DASHBOARD
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 function openAdminLogin() {
   document.getElementById('al-user').value = '';
   document.getElementById('al-pass').value = '';
@@ -1172,7 +1190,7 @@ async function doAdminLogin() {
       errDiv.style.display = 'block';
     }
   } catch(e) {
-    errDiv.textContent = 'Erreur réseau.';
+    errDiv.textContent = 'Erreur rÃ©seau.';
     errDiv.style.display = 'block';
   }
 }
@@ -1190,8 +1208,8 @@ function renderAdminDashboard() {
   const total = adminBookings.length;
   const receptifsWithRdv = new Set(adminBookings.map(b => b.receptif_nom)).size;
   document.getElementById('admin-stats').innerHTML = `
-    <div class="stat-box"><div class="stat-num">${total}</div><div class="stat-label">RDV confirmés</div></div>
-    <div class="stat-box"><div class="stat-num">${receptifsWithRdv}</div><div class="stat-label">Réceptifs actifs</div></div>
+    <div class="stat-box"><div class="stat-num">${total}</div><div class="stat-label">RDV confirmÃ©s</div></div>
+    <div class="stat-box"><div class="stat-num">${receptifsWithRdv}</div><div class="stat-label">RÃ©ceptifs actifs</div></div>
     <div class="stat-box"><div class="stat-num">${41 - receptifsWithRdv}</div><div class="stat-label">Sans RDV</div></div>
   `;
   renderAdminTable(adminBookings);
@@ -1201,15 +1219,15 @@ function renderAdminDashboard() {
 function renderAdminTable(bookings) {
   const wrap = document.getElementById('admin-table-wrap');
   if(!bookings.length) {
-    wrap.innerHTML = '<p style="padding:1.5rem;color:var(--gris);font-size:0.8rem;">Aucun rendez-vous confirmé.</p>';
+    wrap.innerHTML = '<p style="padding:1.5rem;color:var(--gris);font-size:0.8rem;">Aucun rendez-vous confirmÃ©.</p>';
     return;
   }
   wrap.innerHTML = `<table class="data-table">
     <thead>
       <tr>
-        <th>Réceptif</th>
+        <th>RÃ©ceptif</th>
         <th>Pays</th>
-        <th>Créneau</th>
+        <th>CrÃ©neau</th>
         <th>Agence</th>
         <th>Contact</th>
         <th>Email</th>
@@ -1252,12 +1270,12 @@ function filterAdminTable() {
 function renderPasswordsTable(passwords) {
   const wrap = document.getElementById('passwords-table-wrap');
   if(!passwords.length) {
-    wrap.innerHTML = '<p style="padding:1.5rem;color:var(--gris);font-size:0.8rem;">Aucun code trouvé.</p>';
+    wrap.innerHTML = '<p style="padding:1.5rem;color:var(--gris);font-size:0.8rem;">Aucun code trouvÃ©.</p>';
     return;
   }
   wrap.innerHTML = `<table class="data-table">
     <thead>
-      <tr><th>#</th><th>Réceptif (nom d'utilisateur)</th><th>Code d'accès</th></tr>
+      <tr><th>#</th><th>RÃ©ceptif (nom d'utilisateur)</th><th>Code d'accÃ¨s</th></tr>
     </thead>
     <tbody>
       ${passwords.map((p,i) => `<tr>
@@ -1275,9 +1293,9 @@ function filterPwdTable() {
   renderPasswordsTable(filtered);
 }
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    EDIT / CANCEL BOOKING (ADMIN)
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 function openEditBooking(id, agence, contact, email) {
   document.getElementById('edit-booking-id').value = id;
   document.getElementById('edit-agence').value = agence;
@@ -1294,7 +1312,7 @@ async function submitEdit() {
   const email   = document.getElementById('edit-email').value.trim();
   const errDiv  = document.getElementById('edit-error');
   if(!agence || !contact || !email) { errDiv.textContent='Champs obligatoires.'; errDiv.style.display='block'; return; }
-  // Need admin credentials — stored from login
+  // Need admin credentials â stored from login
   const user = 'Togezer', pwd = document.getElementById('al-pass') ? document.getElementById('al-pass').value || '' : '';
   try {
     const res = await fetch('/api/global-admin', {
@@ -1311,7 +1329,7 @@ async function submitEdit() {
       errDiv.textContent = data.error || 'Erreur.';
       errDiv.style.display = 'block';
     }
-  } catch(e) { errDiv.textContent='Erreur réseau.'; errDiv.style.display='block'; }
+  } catch(e) { errDiv.textContent='Erreur rÃ©seau.'; errDiv.style.display='block'; }
 }
 
 async function cancelBooking(id, nom, heure) {
@@ -1328,7 +1346,7 @@ async function cancelBooking(id, nom, heure) {
     } else {
       alert(data.error || 'Erreur lors de l\'annulation.');
     }
-  } catch(e) { alert('Erreur réseau.'); }
+  } catch(e) { alert('Erreur rÃ©seau.'); }
 }
 
 // Store admin password for subsequent requests
@@ -1356,9 +1374,9 @@ function logoutAdmin() {
   showView('home');
 }
 
-/* ═══════════════════════════════════════════════════════
-   RÉCEPTIF LOGIN + DASHBOARD
-═══════════════════════════════════════════════════════ */
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   RÃCEPTIF LOGIN + DASHBOARD
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 async function prefillReceptifDatalist() {
   const dl = document.getElementById('receptif-datalist');
   if(allReceptifs.length === 0) {
@@ -1397,26 +1415,26 @@ async function doReceptifLogin() {
       errDiv.style.display = 'block';
     }
   } catch(e) {
-    errDiv.textContent = 'Erreur réseau.';
+    errDiv.textContent = 'Erreur rÃ©seau.';
     errDiv.style.display = 'block';
   }
 }
 
 function renderReceptifDashboard(receptif, slots, bookings) {
   document.getElementById('receptif-view-title').textContent = receptif.nom;
-  document.getElementById('receptif-view-sub').textContent = `${receptif.pays} — Vos rendez-vous du 25 mars 2026`;
+  document.getElementById('receptif-view-sub').textContent = `${receptif.pays} â Vos rendez-vous du 25 mars 2026`;
   const booked = slots.filter(s => s.statut === 'reserve');
   const free   = slots.filter(s => s.statut === 'disponible');
   let html = `
     <div class="summary-stats" style="margin-bottom:1.5rem;">
-      <div class="stat-box"><div class="stat-num">${booked.length}</div><div class="stat-label">RDV confirmés</div></div>
-      <div class="stat-box"><div class="stat-num">${free.length}</div><div class="stat-label">Créneaux libres</div></div>
-      <div class="stat-box"><div class="stat-num">${slots.length}</div><div class="stat-label">Créneaux total</div></div>
+      <div class="stat-box"><div class="stat-num">${booked.length}</div><div class="stat-label">RDV confirmÃ©s</div></div>
+      <div class="stat-box"><div class="stat-num">${free.length}</div><div class="stat-label">CrÃ©neaux libres</div></div>
+      <div class="stat-box"><div class="stat-num">${slots.length}</div><div class="stat-label">CrÃ©neaux total</div></div>
     </div>`;
   if(!bookings.length) {
-    html += '<p style="padding:1.5rem;color:var(--gris);font-size:0.8rem;">Aucun rendez-vous confirmé pour l\'instant.</p>';
+    html += '<p style="padding:1.5rem;color:var(--gris);font-size:0.8rem;">Aucun rendez-vous confirmÃ© pour l\'instant.</p>';
   } else {
-    html += `<div class="section-title">Vos rendez-vous confirmés</div>
+    html += `<div class="section-title">Vos rendez-vous confirmÃ©s</div>
     <table class="data-table">
       <thead><tr><th>Heure</th><th>Agence</th><th>Contact</th><th>Email</th></tr></thead>
       <tbody>
@@ -1430,13 +1448,13 @@ function renderReceptifDashboard(receptif, slots, bookings) {
     </table>`;
   }
   // All slots overview
-  html += `<div class="section-title" style="margin-top:2rem;">Vue d'ensemble de vos créneaux</div>
+  html += `<div class="section-title" style="margin-top:2rem;">Vue d'ensemble de vos crÃ©neaux</div>
   <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:3rem;">
     ${slots.map(s => `
       <div style="border:2px solid ${s.statut==='reserve'?'var(--accent)':'var(--gris-cl)'};padding:10px 16px;text-align:center;min-width:90px;">
         <div style="font-weight:bold;font-size:0.9rem;">${s.heure}</div>
         <div style="font-size:0.65rem;margin-top:4px;text-transform:uppercase;letter-spacing:0.4px;color:${s.statut==='reserve'?'var(--accent)':'var(--gris)'};">
-          ${s.statut === 'reserve' ? '✓ Réservé' : 'Libre'}
+          ${s.statut === 'reserve' ? 'â RÃ©servÃ©' : 'Libre'}
         </div>
         ${s.statut === 'reserve' ? `<div style="font-size:0.65rem;color:var(--gris);margin-top:2px;">${s.agence_nom||''}</div>` : ''}
       </div>`).join('')}
@@ -1448,9 +1466,9 @@ function logoutReceptif() {
   showView('home');
 }
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    MODAL HELPERS
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 function openModal(id) {
   document.getElementById(id).classList.add('open');
 }
@@ -1462,9 +1480,9 @@ document.querySelectorAll('.modal-overlay').forEach(el => {
   el.addEventListener('click', e => { if(e.target === el) el.classList.remove('open'); });
 });
 
-/* ═══════════════════════════════════════════════════════
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
    UTILS
-═══════════════════════════════════════════════════════ */
+âââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
 function escHtml(s) {
   return String(s||'').replace(/'/g, "\\'").replace(/"/g, '&quot;');
 }
